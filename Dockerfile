@@ -1,5 +1,7 @@
 FROM nginx:alpine
 
+ENV BACKEND_UPSTREAM_URL=https://hpnmobilebackend-production.up.railway.app
+
 # Remove default nginx config
 RUN rm /etc/nginx/conf.d/default.conf
 
@@ -8,6 +10,8 @@ RUN rm -rf /usr/share/nginx/html/*
 
 # Copy templated config so the backend upstream can be injected at startup
 COPY nginx.conf.template /etc/nginx/templates/default.conf.template
+COPY docker-entrypoint.d/10-render-config.sh /docker-entrypoint.d/10-render-config.sh
+RUN chmod +x /docker-entrypoint.d/10-render-config.sh
 
 # Copy public web app at /
 COPY web-dist/ /usr/share/nginx/html/
