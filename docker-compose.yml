@@ -1,0 +1,12 @@
+services:
+  gateway:
+    build:
+      context: ./hpn_nginx_gateway
+    container_name: hpn_nginx_gateway
+    environment:
+      BACKEND_UPSTREAM_URL: ${BACKEND_UPSTREAM_URL:-https://hpnmobilebackend-production.up.railway.app}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "8080:80"
+    restart: unless-stopped
