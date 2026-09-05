@@ -1,6 +1,6 @@
 FROM nginx:alpine
 
-ENV BACKEND_UPSTREAM_URL=https://hpnmobilebackend-production.up.railway.app
+ENV BACKEND_UPSTREAM_URL=http://hpnmobilebackend.railway.internal:4000
 
 # Remove default nginx config
 RUN rm /etc/nginx/conf.d/default.conf
