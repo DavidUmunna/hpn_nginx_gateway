@@ -5,13 +5,13 @@
     <link rel="icon" type="image/png" href="/notification_icon.png " />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- The app only ships a light design (white cards, dark text) with no dark theme
-         of its own. Without this, phones in system dark mode auto-darken unstyled
-         form controls, which can land white UA text on an explicitly white input
-         background and make it unreadable. -->
-    <meta name="color-scheme" content="light" />
+         of its own. The "only" keyword is required, not just "light" — it's what
+         actually tells Chrome/Android to skip its Auto Dark Theme repainting here,
+         on top of stopping unstyled form controls from auto-darkening. -->
+    <meta name="color-scheme" content="only light" />
     <title>His Presence Newcastle</title>
-    <script type="module" crossorigin src="/assets/index-BnMZWPMe.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-CQTzAwp6.css">
+    <script type="module" crossorigin src="/assets/index-DIYUtI-5.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-kYK1eCLO.css">
   </head>
   <body>
     <div id="root"></div>
