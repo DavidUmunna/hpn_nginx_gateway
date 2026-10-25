@@ -28,8 +28,13 @@ server {
         # from the base image's own docker-entrypoint.d/15-local-resolvers.envsh
         # (enabled via NGINX_ENTRYPOINT_LOCAL_RESOLVERS in the Dockerfile).
         resolver ${NGINX_LOCAL_RESOLVERS} valid=10s;
+        # No URI part on proxy_pass: with a variable, nginx would send that
+        # URI verbatim (every request becomes "/api/") instead of swapping
+        # the location prefix. Without one, the original /api/... path and
+        # query string pass through unchanged, which is what the backend
+        # mounts on.
         set $backend_upstream ${BACKEND_UPSTREAM_URL};
-        proxy_pass $backend_upstream/api/;
+        proxy_pass $backend_upstream;
         proxy_http_version 1.1;
         proxy_ssl_server_name on;
         proxy_ssl_name $proxy_host;
